@@ -1,0 +1,38 @@
+{
+    "name": "qeola-api",
+    "version": "1.0.0",
+    "description": "Qeola - We Will Make Your Brand visible, memorable, lovable, accessible, powerful.",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "author": "Ola Okegbemi",
+    "license": "ISC",
+    "dependencies": {
+        "aws-sdk": "^2.979.0",
+        "bcrypt": "^5.0.1",
+        "colors": "^1.4.0",
+        "cors": "^2.8.5",
+        "crypto": "^1.0.1",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-mongo-sanitize": "^2.1.0",
+        "express-rate-limit": "^5.3.0",
+        "faker": "^5.5.3",
+        "helmet": "^4.6.0",
+        "hpp": "^0.2.3",
+        "html-to-text": "^8.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.0.3",
+        "multer": "^1.4.3",
+        "nodemailer": "^6.6.3",
+        "pug": "^3.0.2",
+        "sharp": "^0.29.0",
+        "validator": "^13.6.0",
+        "xss-clean": "^0.1.1"
+    },
+    "devDependencies": {
+        "morgan": "^1.10.0"
+    }
+}

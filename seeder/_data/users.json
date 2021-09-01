@@ -1,0 +1,14 @@
+[
+	{
+		"firstName": "Super",
+		"lastName": "Administrator",
+		"phoneNumber": "0987654321",
+		"email": "admin@test.me",
+		"gender": "male",
+		"password": "qwerty",
+		"passwordConfirm": "qwerty",
+		"country": "602c330112ac0d3a64b2056f", 
+		"role": "admin",
+        "active": true
+	}
+]
