@@ -36,18 +36,18 @@ exports.uploadImageToS3 = async (req, fileName, bucket, next) => {
     return result;
 }
 
-exports.uploadBookToS3 = asyncHandler( async(req, fileName, bucket, next) => {
+exports.uploadFileToS3 = async(req, fileName, bucket) => {
     const params = {
         Bucket: bucket,
         Key: fileName,
-        Body: req.files.book[0].buffer
+        Body: req.file.buffer
     }
+    
+    const result = await awsS3.upload(params).promise();
 
-    await awsS3.upload(params, (error, data) => {
-        if(error){
-            console.log(error)
-        }
-    })  
-});
+    if(!result) return next(new AppError("Error Uploading imaging", 400))
+    return result;
+
+};
 
 
