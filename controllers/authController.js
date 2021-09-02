@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { promisify } = require('util');
+const cron = require('node-schedule');
 
 const User = require('./../models/userModel');
-
 const AppError = require('./../utils/appError');
 const Email = require('./../utils/email');
 
@@ -41,49 +41,28 @@ const createSendToken = (user, statusCode, res) => {
     })
 }
 
-exports.sendMail = asyncHandler( async (req, res, next) => {
-    const datetime = "2021-07-05T01:00:00";
-    const date = datetime.split('T')[0];
-    const timeExtract = datetime.split('T')[1];
-    const time = timeExtract.substring(0,5);
-
-    const user = {
-        email: 'lystuntest@gmail.com',
-        name: 'Ola test',
-    }
-
-    try{
-        await new Email(user, url).sendScanResultHealthy();
-
-    }catch(err){
-        console.log(err)
-    }
-
-    res.status(200).json({
-        status: "success",
-        data: "sent"
-    })
-});
-
 //send client email to admin
 exports.sendMessage = asyncHandler( async (req, res, next) => {
-
-    const {fname, lname, message, email} = req.body;
+    const {name, phone, email, briefText} = req.body;
 
     const user = {
-        name: fname+' '+lname,
-        email: 'thevirtualsoulclinic@gmail.com',
-        message,
+        name,
+        email,
+        phone,
+        message: briefText,
         date: new Date().toUTCString(),
     }
 
-    const url = email;
+    const url = "https://qeola-api.s3.us-east-2.amazonaws.com/briefs/brief-1630529023615.pdf";
 
-    try{
-        await new Email(user, url).sendMessage();
-    }catch(err){
-        console.log(err)
-    }
+    const job = cron.scheduleJob( new Date(Date.now() + 1000) , async function(){
+        try{
+            await new Email(user, url).sendClientBrief();
+        }catch(err){
+            console.log(err)
+            return next(new AppError(`Error Sending email. Please try again later. ${err}`, 400));
+        }
+    });
 
     res.status(200).json({
         status: "success",
