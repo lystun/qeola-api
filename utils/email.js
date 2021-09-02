@@ -10,8 +10,8 @@ module.exports = class Email {
         this.message = user.message || '';
         this.url = url || '';
         this.phone = user.phone || '';
-        // this.to = process.env.MAIL_ADMIN
-        this.to = 'lystuntest@gmail.com'
+        this.to = process.env.MAIL_ADMIN
+        // this.to = 'lystuntest@gmail.com'
     }
 
     newTransport(){
@@ -24,6 +24,7 @@ module.exports = class Email {
         //         pass: process.env.EMAIL_PASSWORD
         //     },
         // })
+
 
         return nodemailer.createTransport({
             service: 'gmail',
@@ -41,6 +42,7 @@ module.exports = class Email {
         const html = pug.renderFile(`${__dirname}/../views/emails/${template}.pug`, {
             name : this.name,
             message: this.message,
+            email: this.from,
             url: this.url,
             phone: this.phone,
             subject,

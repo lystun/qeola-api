@@ -10,9 +10,14 @@ const formatCredentials = (value) => {
     return value.replace(/[",]+/g,'')
 }
 
+// awsS3 = new AWS.S3({
+//     accessKeyId: formatCredentials(process.env.AWS_ACCESS_KEY_ID),
+//     secretAccessKey: formatCredentials(process.env.AWS_SECRET_KEY),
+// });
+
 awsS3 = new AWS.S3({
-    accessKeyId: formatCredentials(process.env.AWS_ACCESS_KEY_ID),
-    secretAccessKey: formatCredentials(process.env.AWS_SECRET_KEY),
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
 });
 
 exports.uploadImageToS3 = async (req, fileName, bucket, next) => {
@@ -47,7 +52,6 @@ exports.uploadFileToS3 = async(req, fileName, bucket) => {
 
     if(!result) return next(new AppError("Error Uploading imaging", 400))
     return result;
-
 };
 
 
