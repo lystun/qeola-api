@@ -17,7 +17,8 @@ exports.createPost = asyncHandler( async (req, res, next) => {
     const result = await uploadImage(req, fileName, 'qeola-api/posts/images', next)
     req.body.image = result.Location;
 
-    const post  = await Post.create(req.body)
+    console.log(req.body);
+    // const post  = await Post.create(req.body);
     
     res.status(201).json({
         status: "success",
