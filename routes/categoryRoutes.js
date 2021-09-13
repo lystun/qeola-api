@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { getCategories, getCategory, getDocCount, createCategory, updateCategory, deleteCategory } = require('../controllers/categoryController');
-const { protect } = require('../controllers/authController');
+const { protect, restrictTo } = require('../controllers/authController');
 
 //require the post seeder
 const categorySeeder = require('../seeder/factories/categorySeeder');
