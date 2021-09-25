@@ -15,12 +15,12 @@ router
     .route('/:id')
     .get(getBrief)
     .delete(protect, deleteBrief)
-    .patch(protect, handleFileFromClient, updateBrief)
+    .patch(handleFileFromClient, updateBrief)
 
 router
     .route('/')
     .get(getBriefs)
-    .post(protect, handleFileFromClient, createBrief)
+    .post(handleFileFromClient, createBrief)
 
 
 //seeder and clean
