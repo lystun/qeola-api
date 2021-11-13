@@ -10,6 +10,7 @@
     "author": "Ola Okegbemi",
     "license": "ISC",
     "dependencies": {
+        "@mailchimp/mailchimp_marketing": "^3.0.70",
         "aws-sdk": "^2.979.0",
         "bcrypt": "^5.0.1",
         "colors": "^1.4.0",
